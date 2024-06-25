@@ -7,10 +7,5 @@ export default defineConfig({
     react()
   ],
   output: 'server',
-  adapter: netlify(),
-  vite: {
-    ssr: {
-      noExternal: ['clsx', '@phosphor-icons/*', '@recogito/annotorious-supabase']
-    }
-  }
+  adapter: netlify()
 });
