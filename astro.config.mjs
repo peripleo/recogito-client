@@ -7,5 +7,10 @@ export default defineConfig({
     react()
   ],
   output: 'server',
-  adapter: netlify()
+  adapter: netlify(),
+  vite: {
+    ssr: {
+      noExternal: ['clsx']
+    }
+  }
 });
