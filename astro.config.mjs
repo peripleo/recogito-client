@@ -11,6 +11,11 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ['clsx']
+    },
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'esnext'
+      }
     }
   }
 });
