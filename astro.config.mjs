@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: netlify(),
   vite: {
     ssr: {
-      noExternal: ['clsx', '@phosphor-icons/*', '@radix-ui/*', '@recogito/annotorious-supabase']
+      noExternal: ['clsx', '@phosphor-icons/*', '@radix-ui/*']
     },
     optimizeDeps: {
       esbuildOptions: {
