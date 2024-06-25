@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-import netlify from '@astrojs/netlify/functions';
+import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   integrations: [
@@ -10,7 +10,7 @@ export default defineConfig({
   adapter: netlify(),
   vite: {
     ssr: {
-      noExternal: ['clsx', '@phosphor-icons/*', '@recogito/annotorious-supabase']
+      noExternal: ['clsx', '@phosphor-icons/*']
     },
     optimizeDeps: {
       esbuildOptions: {

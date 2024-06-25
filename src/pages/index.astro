@@ -1,4 +1,6 @@
 ---
+console.log('index');
+
 import { getMyProfile } from '@backend/crud';
 import { createSupabaseServerClient } from '@backend/supabaseServerClient';
 import { defaultLang, languages } from '@i18n';
@@ -10,10 +12,14 @@ const lang = accepts ? parser.pick(Object.keys(languages), accepts) : defaultLan
 
 const supabase = await createSupabaseServerClient(Astro.cookies);
 
+console.log('got client');
+
 const me = await getMyProfile(supabase);
 if (me.error || !me.data) {
+  console.log('redirecting to login');
   return Astro.redirect(`/${lang}/sign-in?redirect-to=${Astro.url.pathname}`);
 } else {
+  console.log('redirecting to projects');
   return Astro.redirect(`/${lang}/projects`);
 }
 ---
