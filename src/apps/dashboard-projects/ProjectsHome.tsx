@@ -36,6 +36,8 @@ export enum ProjectFilter {
 }
 
 export const ProjectsHome = (props: ProjectsHomeProps) => {
+  console.log('PROJECTS HOME (CLIENT)');
+  
   const { t } = props.i18n;
 
   const { me } = props;

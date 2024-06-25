@@ -1,4 +1,6 @@
 ---
+console.log('/lang/projects');
+
 import { createSupabaseServerClient } from '@backend/supabaseServerClient';
 import { getLangFromUrl, getTranslations } from '@i18n';
 import { getMyProfile, listMyInvites } from '@backend/crud';
@@ -6,24 +8,36 @@ import { ProjectsHome } from '@apps/dashboard-projects';
 import { listMyProjectsExtended } from '@backend/helpers';
 import BaseLayout from '@layouts/BaseLayout.astro';
 
+console.log('/lang/projects - imports done');
+
 const lang = getLangFromUrl(Astro.url);
 
 const supabase = await createSupabaseServerClient(Astro.cookies);
+
+console.log('client instantiated');
 
 const me = await getMyProfile(supabase);
 if (me.error || !me.data) {
   return Astro.redirect(`/${lang}/sign-in?redirect-to=${Astro.url.pathname}`);
 }
 
+console.log('profile loaded');
+
 const projects = await listMyProjectsExtended(supabase);
 
+console.log('got projects', projects);
+
 const invitations = await listMyInvites(supabase);
+
+console.log('got invites');
 
 if (!projects.data || !invitations.data) {
   const path = Astro.url.protocol + '//' + Astro.url.host;
   const error = await fetch(`${path}/500`);
   return new Response(error.body, { headers: error.headers, status: 500 });
 }
+
+console.log('rendering page');
 ---
 <BaseLayout title='Dashboard'>
   <ProjectsHome
